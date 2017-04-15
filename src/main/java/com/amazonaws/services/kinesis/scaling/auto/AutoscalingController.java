@@ -137,8 +137,8 @@ public class AutoscalingController implements Runnable {
 					} else {
 						if (entry.getValue().isDone()) {
 							if (runningMonitors.get(entry.getKey()).getException() != null) {
-								throw new InterruptedException(
-										runningMonitors.get(entry.getKey()).getException().getMessage());
+							    // do not stop processing here ...
+								LOG.error("Exception in monitor Future:\n"+runningMonitors.get(entry.getKey()).getException().getMessage());
 							}
 						}
 					}
